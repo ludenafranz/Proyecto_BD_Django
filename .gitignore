@@ -1,0 +1,33 @@
+
+
+# Ignorar todo dentro de este entorno por defecto
+/hotel_habitaciones_venv/*
+
+# Permitir exclusivamente tus carpetas de código Django
+!/hotel_habitaciones_venv/habitacion/
+!/hotel_habitaciones_venv/hotel_habitaciones/
+!/hotel_habitaciones_venv/modelo/
+
+# Permitir archivos sueltos de código y dependencias
+!/hotel_habitaciones_venv/manage.py
+!/hotel_habitaciones_venv/requirements*.txt
+
+
+# Ignorar todo dentro de este entorno por defecto
+/hotel_reservas_venv/*
+
+# Permitir exclusivamente tus carpetas de código de reservas (ajusta los nombres si varían)
+!/hotel_reservas_venv/reserva/
+!/hotel_reservas_venv/hotel_reservas/
+!/hotel_reservas_venv/modelo
+!/hotel_reservas_venv/TEMPLATES
+
+# Permitir archivos sueltos de código y dependencias
+!/hotel_reservas_venv/manage.py
+!/hotel_reservas_venv/requirements*.txt
+
+
+# Ignorar archivos compilados y cachés en todo el proyecto
+**/__pycache__/
+**/*.pyc
+**/db.sqlite3

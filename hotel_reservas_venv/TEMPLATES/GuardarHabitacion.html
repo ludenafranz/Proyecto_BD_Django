@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guardar Habitacion</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        padding: 20px;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #555;
+        font-weight: bold;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="date"],
+      input[type="time"],
+      textarea,
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+      }
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+      input[type="text"]:focus,
+      input[type="email"]:focus,
+      input[type="date"]:focus,
+      input[type="time"]:focus,
+      textarea:focus,
+      select:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      button {
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Guardar Consulta</h1>
+      <form method="POST" action="{% url 'guardar_habitacion' %}">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="numero">Numero:</label>
+          <input type="text"
+            id="numero"
+            name="numero"
+            placeholder="Numero de habitacion"
+          ></input>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="piso">Piso:</label>
+            <input type="number" id="piso" name="piso" min="1" max="100" step="1">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tipohabitacion">Tipo Habitacion:</label>
+          <select id="tipohabitacion" name="tipohabitacion" required>
+            <option values="">Seleccionar propietario..</option>
+            {% for tipo in tipohabitaciones %}
+            <option value="{{ tipo.tipo_id }}">{{ tipo.nombre }}</option>
+            {% empty %}
+            <option>No hay tipos de habitaciones registrados</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="estado">Estado:</label>
+          <select id="estado" name="estado" required>
+            <option value="">Seleccionar veterinario...</option>
+            {% for valor, etiqueta in estados %}
+            <option value="{{ valor }}">{{ etiqueta }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <button type="submit">Guardar Consulta</button>
+      </form>
+    </div>
+  </body>
+</html>
